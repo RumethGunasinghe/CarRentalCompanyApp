@@ -1,20 +1,49 @@
 package com.example.carrentalapp
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Bookings : AppCompatActivity() {
+
+    private lateinit var rvBookings: RecyclerView
+    private lateinit var adapter: BookingAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_bookings)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    true
+                }
+                R.id.favourites -> {
+                    startActivity(Intent(this, Favourites::class.java))
+                    true
+                }
+                R.id.bookings -> true
+                else -> false
+            }
         }
+
+        rvBookings = findViewById(R.id.rvBookings)
+        rvBookings.layoutManager = LinearLayoutManager(this)
+
+        // Show only rented cars
+        val bookedCars = CarRepository.availableCars.filter { it.rented }
+
+        adapter = BookingAdapter(bookedCars)
+        rvBookings.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
     }
 }

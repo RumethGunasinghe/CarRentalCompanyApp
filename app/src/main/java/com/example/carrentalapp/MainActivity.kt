@@ -1,13 +1,10 @@
 package com.example.carrentalapp
 
 import Car
+import CarRepository
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -19,8 +16,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnNext: Button
     private lateinit var btnPrevious: Button
     private lateinit var btnDetails: Button
-    private lateinit var ivFavourite : ImageView
+    private lateinit var ivFavourite: ImageView
 
+    private lateinit var availableCars: List<Car> // Only cars not rented
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.home -> {
-                    // Already in MainActivity, do nothing
-                    true
-                }
+                R.id.home -> true // Already here
                 R.id.favourites -> {
                     startActivity(Intent(this, Favourites::class.java))
                     true
@@ -48,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Find views
+        // --- Find views ---
         carImage = findViewById(R.id.imageView)
         ivFavourite = findViewById(R.id.ivFavourite)
         carDetails = findViewById(R.id.textView3)
@@ -59,17 +54,19 @@ class MainActivity : AppCompatActivity() {
 
         credits.text = "Credits: ${CarRepository.creditBalance}"
 
-        // Display the first car
-        displayCar(currentIndex)
+        // --- Filter available cars ---
+        availableCars = getAvailableCars()
+        if (availableCars.isNotEmpty()) displayCar(currentIndex)
 
+        // --- Favourite toggle ---
         ivFavourite.setOnClickListener {
-            val car = CarRepository.availableCars[currentIndex]
+            val car = availableCars[currentIndex]
             car.isFavourite = !car.isFavourite
             updateFavouriteIcon(car)
 
-            // Optional: add/remove from favourites list
             if (car.isFavourite) {
-                CarRepository.favourites.add(car)
+                if (!CarRepository.favourites.contains(car))
+                    CarRepository.favourites.add(car)
                 Toast.makeText(this, "${car.name} added to favourites!", Toast.LENGTH_SHORT).show()
             } else {
                 CarRepository.favourites.remove(car)
@@ -77,32 +74,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-        // Next button
+        // --- Next / Previous ---
         btnNext.setOnClickListener {
-            currentIndex = (currentIndex + 1) % CarRepository.availableCars.size
-            displayCar(currentIndex)
-        }
-
-        // Previous button
-        btnPrevious.setOnClickListener {
-            currentIndex = if (currentIndex - 1 < 0) CarRepository.availableCars.size - 1 else currentIndex - 1
-            displayCar(currentIndex)
-        }
-
-        // Details / Rent button
-        btnDetails.setOnClickListener {
-            val car = CarRepository.availableCars[currentIndex]
-            if (CarRepository.creditBalance >= car.dailyCost) {
-                CarRepository.creditBalance -= car.dailyCost
-                CarRepository.rentedCars.add(car)
-                credits.text = "Credits: ${CarRepository.creditBalance}"
-                Toast.makeText(this, "You rented ${car.name}!", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Not enough credits!", Toast.LENGTH_SHORT).show()
+            if (availableCars.isNotEmpty()) {
+                currentIndex = (currentIndex + 1) % availableCars.size
+                displayCar(currentIndex)
             }
         }
+
+        btnPrevious.setOnClickListener {
+            if (availableCars.isNotEmpty()) {
+                currentIndex = if (currentIndex - 1 < 0) availableCars.size - 1 else currentIndex - 1
+                displayCar(currentIndex)
+            }
+        }
+
+        // --- Details / Rent ---
+        btnDetails.setOnClickListener {
+            val intent = Intent(this, CarDetails::class.java)
+            intent.putExtra("CAR_ID", CarRepository.availableCars.indexOf(availableCars[currentIndex]))
+            startActivity(intent)
+        }
     }
+
     private fun updateFavouriteIcon(car: Car) {
         if (car.isFavourite) {
             ivFavourite.setImageResource(R.drawable.ic_favadded)
@@ -111,9 +105,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun displayCar(index: Int) {
-        val car = CarRepository.availableCars[index]
+        val car = availableCars[index]
         carImage.setImageResource(car.imageResId)
         carDetails.text = """
             Name: ${car.name}
@@ -127,5 +120,21 @@ class MainActivity : AppCompatActivity() {
         updateFavouriteIcon(car)
     }
 
+    private fun getAvailableCars(): List<Car> {
+        return CarRepository.availableCars.filter { !it.rented } // only not rented
+    }
 
+    override fun onResume() {
+        super.onResume()
+        // Refresh list after returning from CarDetails
+        availableCars = getAvailableCars()
+        if (availableCars.isNotEmpty()) {
+            if (currentIndex >= availableCars.size) currentIndex = 0
+            displayCar(currentIndex)
+        } else {
+            carDetails.text = "No cars available!"
+
+        }
+        credits.text = "Credits: ${CarRepository.creditBalance}"
+    }
 }
