@@ -19,12 +19,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnPrevious: Button
     private lateinit var btnDetails: Button
     private lateinit var ivFavourite: ImageView
-    private lateinit var ivFavourite: ImageView
-    private lateinit var searchView: SearchView
-    private lateinit var btnSort: ImageButton
 
-    private lateinit var availableCars: List<Car>
-    private var filteredCars: List<Car> = listOf()// Only cars not rented
+
+    private lateinit var availableCars: List<Car> // Only cars not rented
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
