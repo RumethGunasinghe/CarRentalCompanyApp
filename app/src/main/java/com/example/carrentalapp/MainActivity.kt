@@ -5,6 +5,8 @@ import CarRepository
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
+import android.view.MenuItem
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -17,13 +19,49 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnPrevious: Button
     private lateinit var btnDetails: Button
     private lateinit var ivFavourite: ImageView
+    private lateinit var ivFavourite: ImageView
+    private lateinit var searchView: SearchView
+    private lateinit var btnSort: ImageButton
 
-    private lateinit var availableCars: List<Car> // Only cars not rented
+    private lateinit var availableCars: List<Car>
+    private var filteredCars: List<Car> = listOf()// Only cars not rented
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val btnSort: ImageButton = findViewById(R.id.btnSort)
+
+        btnSort.setOnClickListener {
+            val popup = PopupMenu(this, btnSort)
+            popup.menuInflater.inflate(R.menu.sort_menu, popup.menu)
+
+            popup.setOnMenuItemClickListener { item: MenuItem ->
+                when (item.itemId) {
+                    R.id.sort_rating -> {
+                        availableCars = availableCars.sortedByDescending { it.rating }
+                        displayCar(currentIndex)
+                        true
+                    }
+                    R.id.sort_year -> {
+                        availableCars = availableCars.sortedByDescending { it.year }
+                        displayCar(currentIndex)
+                        true
+                    }
+                    R.id.sort_cost -> {
+                        availableCars = availableCars.sortedBy { it.dailyCost }
+                        displayCar(currentIndex)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+
+
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNav.selectedItemId = R.id.home
