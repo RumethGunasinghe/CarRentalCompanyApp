@@ -8,6 +8,7 @@ data class Car(
     val kilometres: Int,
     val dailyCost: Int,
     val imageResId: Int,
+    val description : String = " ",
     var isFavourite: Boolean = false,
     var rented : Boolean= false
 )

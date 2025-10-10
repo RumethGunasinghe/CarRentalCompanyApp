@@ -1,7 +1,7 @@
 package com.example.carrentalapp
 
 import Car
-import CarRepository
+import com.example.carrentalapp.CarRepository
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*

@@ -1,7 +1,7 @@
 package com.example.carrentalapp
 
 import Car
-import CarRepository
+import com.example.carrentalapp.CarRepository
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -30,6 +30,29 @@ class MainActivity : AppCompatActivity() {
 
 
         val btnSort: ImageButton = findViewById(R.id.btnSort)
+        val searchView = findViewById<SearchView>(R.id.searchView)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Called when user presses Enter/Search
+                if (!query.isNullOrEmpty()) {
+                    performSearch(query)
+                } else {
+                    // If empty query, reset to show all cars
+                    availableCars = getAvailableCars()
+                    currentIndex = 0
+                    displayCar(currentIndex)
+                }
+                searchView.clearFocus() // hides keyboard after search
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Optional: live filtering (we can skip this)
+                return false
+            }
+        })
+
 
         btnSort.setOnClickListener {
             val popup = PopupMenu(this, btnSort)
@@ -39,16 +62,19 @@ class MainActivity : AppCompatActivity() {
                 when (item.itemId) {
                     R.id.sort_rating -> {
                         availableCars = availableCars.sortedByDescending { it.rating }
+                        currentIndex = 0
                         displayCar(currentIndex)
                         true
                     }
                     R.id.sort_year -> {
                         availableCars = availableCars.sortedByDescending { it.year }
+                        currentIndex = 0
                         displayCar(currentIndex)
                         true
                     }
                     R.id.sort_cost -> {
                         availableCars = availableCars.sortedBy { it.dailyCost }
+                        currentIndex = 0
                         displayCar(currentIndex)
                         true
                     }
@@ -78,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // --- Find views ---
+
         carImage = findViewById(R.id.imageView)
         ivFavourite = findViewById(R.id.ivFavourite)
         carDetails = findViewById(R.id.textView3)
@@ -89,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
         credits.text = "Credits: ${CarRepository.creditBalance}"
 
-        // --- Filter available cars ---
+
         availableCars = getAvailableCars()
         if (availableCars.isNotEmpty()) displayCar(currentIndex)
 
@@ -131,6 +157,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    private fun performSearch(query: String) {
+        val filteredCars = getAvailableCars().filter { car ->
+            car.name.contains(query, ignoreCase = true) ||
+                    car.model.contains(query, ignoreCase = true)
+        }
+
+        if (filteredCars.isNotEmpty()) {
+            availableCars = filteredCars
+            currentIndex = 0
+            displayCar(currentIndex)
+            Toast.makeText(this, "${filteredCars.size} car(s) found", Toast.LENGTH_SHORT).show()
+        } else {
+            carDetails.text = "No cars found for \"$query\""
+            carImage.setImageResource(0)
+        }
+    }
+
 
     private fun updateFavouriteIcon(car: Car) {
         if (car.isFavourite) {

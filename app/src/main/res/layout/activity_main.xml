@@ -38,7 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:queryHint="Search by name or model" />
+            android:queryHint="Search by name or model"
+            android:imeOptions="actionSearch" />
 
         <ImageButton
             android:id="@+id/btnSort"
@@ -87,34 +88,33 @@
 
     <Button
         android:id="@+id/btnDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="419dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="112dp"
         android:text="Rent / Details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnNext" />
+        app:layout_constraintTop_toBottomOf="@+id/ivFavourite" />
 
     <Button
-        android:id="@+id/btnPrevious"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Previous"
-        app:layout_constraintEnd_toStartOf="@+id/btnNext"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/btnNext"
+        android:layout_width="200dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="52dp"
+        android:text="Next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPrevious"
         app:layout_constraintTop_toBottomOf="@id/ivFavourite"
         app:layout_constraintWidth_percent="0.45" />
 
     <Button
-        android:id="@+id/btnNext"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnPrevious"
+        android:id="@+id/btnPrevious"
+        android:layout_width="207dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="52dp"
+        android:text="Previous"
+        app:layout_constraintEnd_toStartOf="@+id/btnNext"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivFavourite"
         app:layout_constraintWidth_percent="0.45" />
 
