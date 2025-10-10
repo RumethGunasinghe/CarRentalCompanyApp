@@ -4,27 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <!-- Car Image -->
-
-    <!-- Car Name -->
-
-    <!-- Car Info (year, model, rating) -->
-
-    <!-- Daily Cost -->
-
-    <ImageView
-        android:id="@+id/ivCarDetailImage"
-        android:layout_width="404dp"
-        android:layout_height="198dp"
-        android:layout_marginTop="232dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvCarDetailName"
@@ -50,10 +30,48 @@
     <!-- Bottom Navigation -->
 
     <TextView
+        android:id="@+id/tvCarDetailDescription"
+        android:layout_width="404dp"
+        android:layout_height="197dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="This 1974 Volkswagen Cabriolet in Orange Peel is a classic symbol of open-air freedom. Perfect for scenic drives along the coast."
+        android:textAlignment="textStart"
+        android:textColor="?android:textColor"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCarDetailCost" />
+
+    <ImageView
+        android:id="@+id/ivCarDetailImage"
+        android:layout_width="404dp"
+        android:layout_height="198dp"
+        android:layout_marginTop="280dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCarDetailInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="356dp"
+        android:text="1974 Volkswagen Cabriolet • 4.6★"
+        android:textColor="?android:textColor"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCarDetailName" />
+
+    <TextView
         android:id="@+id/tvCarDetailCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Daily Cost: 180 credits"
         android:textColor="?android:textColor"
         android:textSize="17sp"
@@ -62,41 +80,15 @@
         app:layout_constraintTop_toBottomOf="@id/tvCarDetailInfo" />
 
     <TextView
-        android:id="@+id/tvCarDetailInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
-        android:text="1974 Volkswagen Cabriolet • 4.6★"
-        android:textColor="?android:textColor"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCarDetailName" />
-
-    <TextView
-        android:id="@+id/tvCarDetailDescription"
-        android:layout_width="414dp"
-        android:layout_height="197dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="This 1974 Volkswagen Cabriolet in Orange Peel is a classic symbol of open-air freedom. Perfect for scenic drives along the coast."
-        android:textAlignment="textStart"
-        android:textColor="?android:textColor"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCarDetailCost" />
-
-    <TextView
         android:id="@+id/tvDaysSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="744dp"
+        android:layout_marginTop="788dp"
         android:text="Days: 1"
         android:textColor="?android:textColor"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,7 +97,7 @@
         android:layout_width="405dp"
         android:layout_height="30dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="88dp"
         android:max="6"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
@@ -122,16 +114,17 @@
 
     <Button
         android:id="@+id/btnRent"
-        android:layout_width="194dp"
-        android:layout_height="54dp"
+        android:layout_width="195dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:backgroundTint="?attr/colorPrimary"
         android:text="Rent"
         android:textColor="@android:color/white"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -140,10 +133,11 @@
         android:layout_height="52dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
-        android:backgroundTint="?attr/colorSecondary"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="Back"
         android:textColor="@android:color/white"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        tools:layout_editor_absoluteX="2dp" />
+        tools:layout_editor_absoluteX="23dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
