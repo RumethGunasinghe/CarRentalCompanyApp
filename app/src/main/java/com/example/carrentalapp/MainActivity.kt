@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        val btnSort: ImageButton = findViewById(R.id.btnSort)
+        val btnSort: Button = findViewById(R.id.btnSort)
         val searchView = findViewById<SearchView>(R.id.searchView)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
     private fun performSearch(query: String) {
         val filteredCars = getAvailableCars().filter { car ->
             car.name.contains(query, ignoreCase = true) ||
-                    car.model.contains(query, ignoreCase = true)
+                    car.model.contains(query, ignoreCase = true) || car.year.contains(query, ignoreCase = true)
         }
 
         if (filteredCars.isNotEmpty()) {

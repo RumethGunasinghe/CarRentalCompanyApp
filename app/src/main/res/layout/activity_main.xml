@@ -67,9 +67,10 @@
         android:layout_width="419dp"
         android:layout_height="54dp"
         android:layout_marginBottom="16dp"
-        android:text="Rent / Details"
         android:backgroundTint="?attr/colorPrimary"
+        android:text="Rent / Details"
         android:textColor="?attr/colorOnPrimary"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
@@ -79,9 +80,10 @@
         android:id="@+id/btnPrevious"
         android:layout_width="207dp"
         android:layout_height="56dp"
-        android:text="Previous"
         android:backgroundTint="?attr/colorPrimary"
+        android:text="Previous"
         android:textColor="?attr/colorOnPrimary"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/btnDetails"
         app:layout_constraintEnd_toStartOf="@+id/btnNext"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,9 +93,10 @@
         android:id="@+id/btnNext"
         android:layout_width="200dp"
         android:layout_height="57dp"
-        android:text="Next"
         android:backgroundTint="?attr/colorPrimary"
+        android:text="Next"
         android:textColor="?attr/colorOnPrimary"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/btnDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnPrevious"
@@ -123,28 +126,39 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="343dp"
-        android:layout_height="49dp"
+        android:layout_width="260dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="36dp"
         android:layout_weight="1"
+        android:background="@drawable/searchview_rounded"
         android:imeOptions="actionSearch"
         android:queryHint="Search by name or model"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/btnSort"
-        app:layout_constraintHorizontal_bias="0.735"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnSort"
-        android:layout_width="47dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="36dp"
-        android:background="@color/buttonLight"
-        android:contentDescription="Sort"
+<!--    <ImageButton-->
+<!--        android:id="@+id/btnSort"-->
+<!--        android:layout_width="123dp"-->
+<!--        android:layout_height="46dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="104dp"-->
+<!--        android:backgroundTint="?attr/colorPrimary"-->
+<!--        android:contentDescription="Sort"-->
+<!--        android:text="S"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/imageView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
-        android:src="@drawable/sort_vertical_svgrepo_com"
+    <Button
+        android:id="@+id/btnSort"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="32dp"
+        android:text="Sort"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toEndOf="@+id/searchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

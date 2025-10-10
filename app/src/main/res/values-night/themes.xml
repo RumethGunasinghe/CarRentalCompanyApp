@@ -1,6 +1,6 @@
 <resources>
     <style name="Theme.CarRentalApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/buttonDark</item>
+        <item name="colorPrimary">#929194</item>
         <item name="colorOnPrimary">@color/buttonTextDark</item>
         <item name="android:windowBackground">@color/backgroundDark</item>
         <item name="android:textColor">@color/textDark</item>
