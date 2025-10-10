@@ -8,6 +8,7 @@ import android.widget.*
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -26,8 +27,29 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 1️⃣ Get stored dark mode preference
+        val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        val isDarkMode = prefs.getBoolean("DARK_MODE", false)
+
+        // 2️⃣ Apply theme BEFORE loading the layout
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
+
         setContentView(R.layout.activity_main)
 
+        val switchDarkMode = findViewById<Switch>(R.id.switchDarkMode)
+        switchDarkMode.isChecked = isDarkMode
+
+        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit().putBoolean("DARK_MODE", isChecked).apply()
+            AppCompatDelegate.setDefaultNightMode(
+                if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
 
         val btnSort: ImageButton = findViewById(R.id.btnSort)
         val searchView = findViewById<SearchView>(R.id.searchView)

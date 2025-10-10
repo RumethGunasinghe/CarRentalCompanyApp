@@ -35,7 +35,7 @@
                 android:text="Car Name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black" />
+                android:textColor="?android:textColor" />
 
             <TextView
                 android:id="@+id/tvCarDetails"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="Year, Model, Rating"
                 android:textSize="14sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="?android:textColor" />
 
             <TextView
                 android:id="@+id/tvDailyCost"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Daily Cost: 150"
                 android:textSize="14sp"
-                android:textColor="@android:color/holo_green_dark" />
+                android:textColor="?android:textColor" />
         </LinearLayout>
 
     </LinearLayout>

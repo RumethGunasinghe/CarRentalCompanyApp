@@ -3,6 +3,7 @@ package com.example.carrentalapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,6 +14,15 @@ class Favourites : AppCompatActivity() {
     private lateinit var adapter: FavouriteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        val isDarkMode = prefs.getBoolean("DARK_MODE", false)
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 

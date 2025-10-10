@@ -8,19 +8,21 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavourites"
-        android:layout_width="413dp"
-        android:layout_height="579dp"
+        android:layout_width="408dp"
+        android:layout_height="800dp"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textColor="?android:textColor"
+        app:layout_constraintVertical_bias="0.354" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="410dp"
-        android:layout_height="83dp"
+        android:layout_width="456dp"
+        android:layout_height="113dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

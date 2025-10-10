@@ -1,9 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.CarRentalApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<resources>
+    <style name="Theme.CarRentalApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/buttonLight</item>
+        <item name="colorOnPrimary">@color/buttonTextLight</item>
+        <item name="android:windowBackground">@color/backgroundLight</item>
+        <item name="android:textColor">@color/textLight</item>
     </style>
-
-    <style name="Theme.CarRentalApp" parent="Base.Theme.CarRentalApp" />
 </resources>

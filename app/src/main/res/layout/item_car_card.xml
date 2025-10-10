@@ -36,7 +36,7 @@
                 android:text="Toyota Corolla"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black" />
+                android:textColor="?android:textColor" />
 
             <TextView
                 android:id="@+id/textCarType"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sedan • Automatic"
                 android:textSize="14sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="?android:textColor" />
 
             <TextView
                 android:id="@+id/textCarPrice"
@@ -53,7 +53,7 @@
                 android:text="$55 / day"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="?android:textColor" />
 
         </LinearLayout>
     </LinearLayout>
