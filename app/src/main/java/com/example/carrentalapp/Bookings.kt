@@ -47,10 +47,10 @@ class Bookings : AppCompatActivity() {
         rvBookings.layoutManager = LinearLayoutManager(this)
 
         // Show only rented cars
-        val bookedCars = CarRepository.availableCars.filter { it.rented }
-
+        val bookedCars = CarRepository.availableCars.filter { it.rented }.toMutableList()
         adapter = BookingAdapter(bookedCars)
         rvBookings.adapter = adapter
+
     }
 
     override fun onResume() {

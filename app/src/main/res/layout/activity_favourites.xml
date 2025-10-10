@@ -8,16 +8,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavourites"
-        android:layout_width="408dp"
-        android:layout_height="800dp"
+        android:layout_width="397dp"
+        android:layout_height="659dp"
         android:padding="8dp"
+        android:textColor="?android:textColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="?android:textColor"
-        app:layout_constraintVertical_bias="0.354" />
+        app:layout_constraintVertical_bias="0.594" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -29,4 +29,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_nav_menu" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="294dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Favourites"
+        android:textColor="?android:textColor"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

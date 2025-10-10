@@ -54,6 +54,16 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="?android:textColor" />
+            <Button
+                android:id="@+id/btnCancelRent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"/>
+
 
         </LinearLayout>
     </LinearLayout>
