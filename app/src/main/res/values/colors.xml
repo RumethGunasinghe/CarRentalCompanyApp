@@ -3,12 +3,15 @@
     <!-- Light Mode -->
     <color name="backgroundLight">#FFFFFF</color>
     <color name="textLight">#000000</color>
-    <color name="buttonLight">#2196F3</color>
+    <color name="buttonLight">#242424</color>
     <color name="buttonTextLight">#FFFFFF</color>
+    <color name="SearchBarLight">#FFFFFF</color>
 
     <!-- Dark Mode -->
     <color name="backgroundDark">#121212</color>
     <color name="textDark">#FFFFFF</color>
-    <color name="buttonDark">#BB86FC</color>
+    <color name="buttonDark">#878585</color>
     <color name="buttonTextDark">#000000</color>
+    <color name="SearchBarDark">#FFFFFF</color>
+
 </resources>

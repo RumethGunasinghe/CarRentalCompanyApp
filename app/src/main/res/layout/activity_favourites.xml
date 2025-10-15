@@ -21,14 +21,12 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="456dp"
-        android:layout_height="113dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView"

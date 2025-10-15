@@ -49,7 +49,11 @@ class CarDetails : AppCompatActivity() {
                     startActivity(Intent(this, Favourites::class.java))
                     true
                 }
-                R.id.bookings -> true
+                R.id.bookings -> {
+                    startActivity(Intent(this, Bookings::class.java))
+                    true
+                }
+
                 else -> false
             }
         }
